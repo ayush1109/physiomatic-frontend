@@ -9,6 +9,8 @@ import { treatments } from "./treatmentReducer";
 import { appointments } from "./appointmentReducer";
 import { feedbacks } from "./feedbackReducer";
 import { invoices } from "./invoiceReducer";
+import {demographicData } from './demographicDataReducer';
+import {motorData} from './motorExaminationReducer';
 import { exercises, selectedExercises } from "./exerciseReducer";
 
 const errors = (state = {}, action) => {
@@ -36,4 +38,6 @@ export default combineReducers({
   selectedPatient,
   exercises,
   selectedExercises,
+  demographicData,
+  motorData
 });

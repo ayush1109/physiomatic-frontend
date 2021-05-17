@@ -2,15 +2,18 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { Grid } from "@material-ui/core";
 import Validator from "validator";
-import _ from "lodash";
+import _ from "lodash"; 
 import PointingError from "../../LandingPage/ErrorComponent/PointingError";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import BasicContainer from "../../Container/BasicContainer";
+import { addDemograpicData } from "../../../actions/demographicAction";
+import { connect } from "react-redux";
 
-function DemographicData() {
+function DemographicData(props) {
   const onSubmit = (formValues) => {
     console.log(formValues);
+    props.addDemograpicData(formValues);
   };
 
   const [demographicData, setDemographicData] = React.useState({
@@ -311,4 +314,10 @@ function DemographicData() {
   );
 }
 
-export default DemographicData;
+const mapStateToProps = (state) => {
+  return {
+    demographicData: state.demographicData,
+  };
+};
+
+export default connect(mapStateToProps, { addDemograpicData })(DemographicData);
