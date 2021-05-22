@@ -1,21 +1,168 @@
 import React, { useState } from "react";
 import BasicContainer from "../../Container/BasicContainer";
 import { Form, Field } from "react-final-form";
-import { Button } from "@material-ui/core";
+import { connect } from "react-redux";
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
+  Grid,
+} from "@material-ui/core";
 
-function Neuro() {
+function Neuro(props) {
   const [open, setOpen] = useState(0);
+
   return (
     <BasicContainer>
       <div>
         <Form
           onSubmit={(formValues) => {
-            console.log("submitted", formValues);
+            console.log(formValues);
+            props.addNeuroExamData(formValues);
+            var glasgowdata = {
+              glasgow: {
+                eye1: formValues.eye1,
+                eye2: formValues.eye2,
+                eye3: formValues.eye3,
+              },
+            };
+            console.log(glasgowdata);
+
+            var dynamicdata = {
+              dynamic: {
+                ulnarl: formValues.ulnarl,
+                ulnarR: formValues.ulnarR,
+                radiall: formValues.radiall,
+                radialR: formValues.radialR,
+                medianl: formValues.medianl,
+                medianR: formValues.medianR,
+                musculocutaneousl: formValues.musculocutaneousl,
+                musculocutaneousR: formValues.musculocutaneousR,
+                sciaticl: formValues.sciaticl,
+                sciaticR: formValues.sciaticR,
+                tibiall: formValues.tibiall,
+                tibialR: formValues.tibialR,
+                commonPeroniall: formValues.commonPeroniall,
+                commonPeronialR: formValues.commonPeronialR,
+                femorall: formValues.femorall,
+                femoralR: formValues.femoralR,
+                lateralcutaneousl: formValues.lateralcutaneousl,
+                lateralcutaneousR: formValues.lateralcutaneousR,
+                obturatorl: formValues.obturatorl,
+                obturatorR: formValues.obturatorR,
+                surall: formValues.surall,
+                suralR: formValues.suralR,
+              },
+            };
+            console.log(dynamicdata);
+
+            var specialtestdata = {
+              specialtest: {
+                info1: formValues.info1,
+                info2: formValues.info2,
+               
+              },
+            };
+            console.log(specialtestdata);
+
+            var adlscoretdata = {
+              adlscore: {
+                score1: formValues.score1,
+                score2: formValues.score2,
+               
+              },
+            };
+            console.log(adlscoretdata);
+
+            var tissuedata = {
+              tissue: {
+                ulnarrl: formValues.ulnarrl,
+                ulnarrR: formValues.ulnarrR,
+                radialll: formValues.radialll,
+                radiallR: formValues.radiallR,
+                mediannl: formValues.mediannl,
+                mediannR: formValues.mediannR,
+
+                sciaticcl: formValues.sciaticcl,
+                sciaticcR: formValues.sciaticcR,
+                tibialll: formValues.tibialll,
+                tibiallR: formValues.tibiallR,
+                commonPeronialll: formValues.commonPeronialll,
+                commonPeroniallR: formValues.commonPeroniallR,
+                femorall: formValues.femorall,
+                femoralR: formValues.femoralR,
+                peronialll:formValues.peronialll,
+                peroniallR:formValues. peroniallR,
+                lateralcutaneoussl: formValues.lateralcutaneoussl,
+                lateralcutaneoussR: formValues.lateralcutaneoussR,
+               
+              },
+            };
+            console.log(tissuedata);
+
+            var coordinationdata = {
+              coordination: {
+                time: formValues.time,
+                speed: formValues.speed,
+                error: formValues.error,
+
+                time1: formValues.time1,
+                speed1: formValues.speed1,
+                error1: formValues.error1,
+
+                time2: formValues.time2,
+                speed2: formValues.speed2,
+                error2: formValues.error2,
+              },
+            };
+            console.log(coordinationdata);
+
+
+            var balancetestdata = {
+              balancetest: {
+                gait: formValues.gait,
+                change: formValues.change,
+                gait1: formValues.gait1,
+
+                horizontal: formValues.horizontal,
+                vertical: formValues.vertical,
+                pivot: formValues.pivot,
+
+                over: formValues.over,
+                around: formValues.around,
+                steps: formValues.steps,
+
+                balance:formValues.balance,
+              
+              },
+            };
+            console.log(balancetestdata);
+
+
+            var functionaltestdata = {
+              functionaltest: {
+                bowels: formValues.bowels,
+                bladder: formValues.bladder,
+                grooming: formValues.grooming,
+
+                toilet: formValues.toilet,
+                feeding: formValues.feeding,
+                bathing: formValues.bathing,
+
+                transfer: formValues.transfer,
+                mobility: formValues.mobility,
+                dressing: formValues.dressing,
+
+                stairs:formValues.stairs,
+              
+              },
+            };
+            console.log(functionaltestdata);
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit} className="ui form">
-              <Button variant="contained" color="primary" type="submit">Submit</Button>
               <div className="ui center aligned segment">
                 <h3
                   onClick={() => setOpen(1)}
@@ -30,15 +177,16 @@ function Neuro() {
                       <div class="column">
                         <label>Eye Opening</label>
                       </div>
-                      <div class=" four wide column">
-                        <select class="ui fluid dropdown">
-                          <option selected>Please Select</option>
-                          <option value="4">4</option>
-                          <option value="3">3</option>
-                          <option value="2">2</option>
-                          <option value="1">1</option>
-                        </select>
 
+                      <div class=" four wide column">
+                        <Field name="eye1" component="select">
+                          <option selected>Please Select</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </Field>
                       </div>
 
                       <div class="column"></div>
@@ -50,14 +198,14 @@ function Neuro() {
                         <label>Eye Opening</label>
                       </div>
                       <div class=" four wide column">
-                        <select class="ui fluid dropdown">
+                        <Field name="eye2" component="select">
                           <option selected>Please Select</option>
-                          <option value="5">5</option>
-                          <option value="4">4</option>
-                          <option value="3">3</option>
-                          <option value="2">2</option>
                           <option value="1">1</option>
-                        </select>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </Field>
                       </div>
 
                       <div class="column"></div>
@@ -69,15 +217,14 @@ function Neuro() {
                         <label>Eye Opening</label>
                       </div>
                       <div class=" four wide column">
-                        <select class="ui fluid dropdown">
+                        <Field name="eye3" component="select">
                           <option selected>Please Select</option>
-                          <option value="6">6</option>
-                          <option value="5">5</option>
-                          <option value="4">4</option>
-                          <option value="3">3</option>
-                          <option value="2">2</option>
                           <option value="1">1</option>
-                        </select>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </Field>
                       </div>
                     </div>
                   </div>
@@ -113,196 +260,198 @@ function Neuro() {
                           <td class="text-center">Ulnar</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                          <Field name="ulnar">
-                      {({ input, meta }) => <input type="text" {...input} />}
-                    </Field>
+                            <Field name="ulnarl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="ulnar_right"
-                            />
+                            <Field name="ulnarR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Radial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Radial_left"
-                            />{" "}
+                            <Field name="radiall">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Radial_right"
-                            />
+                            <Field name="radialR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Median</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Median_left"
-                            />{" "}
+                            <Field name="medianl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Median_right"
-                            />
+                            <Field name="medianR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Musculocutaneous</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Musculocutaneous_left"
-                            />{" "}
+                            <Field name="musculocutaneousl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Musculocutaneous_right"
-                            />
+                            <Field name="musculocutaneousR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Sciatic</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sciatic_left"
-                            />{" "}
+                            <Field name="sciaticl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sciatic_right"
-                            />
+                            <Field name="sciaticR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Tibial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tibial_left"
-                            />{" "}
+                            <Field name="tibiall">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tibial_right"
-                            />
+                            <Field name="tibialR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Comman peronial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Commanperonial_left"
-                            />{" "}
+                            <Field name="commanperoniall">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Commanperonial_right"
-                            />
+                            <Field name="commanperonialR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Femoral</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Femoral_left"
-                            />{" "}
+                            <Field name="femorall">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Femoral_right"
-                            />
+                            <Field name="femoralR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Lateral cutaneous</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Lateralcutaneous_left"
-                            />{" "}
+                            <Field name="lateralcutaneousl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Lateralcutaneous_right"
-                            />
+                            <Field name="lateralcutaneousR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Obturator</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Obturator_left"
-                            />{" "}
+                            <Field name="obturatorl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Obturator_right"
-                            />
+                            <Field name="obturatorR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Sural</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sural_left"
-                            />{" "}
+                            <Field name="surall">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sural_right"
-                            />
+                            <Field name="suralR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                       </tbody>
@@ -327,13 +476,11 @@ function Neuro() {
                           <div className="input-group-prepend">
                             <span className="input-group-text">@</span>
                           </div>
-                          <input
-                            placeholder="Special Tests"
-                            type="text"
-                            name="scar"
-                            id="scar"
-                            className="form-control"
-                          />
+                          <Field name="info1">
+                            {({ input, meta }) => (
+                              <input type="text" {...input} />
+                            )}
+                          </Field>
                         </div>
                       </div>
                       <div className="column">
@@ -341,13 +488,12 @@ function Neuro() {
                           <div className="input-group-prepend">
                             <span className="input-group-text">@</span>
                           </div>
-                          <textarea
-                            placeholder="Description"
-                            type="text"
-                            name="adhere"
-                            id="adhere"
-                            class="form-control"
-                          ></textarea>
+
+                          <Field name="info2">
+                            {({ input, meta }) => (
+                              <input type="text" {...input} />
+                            )}
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -372,13 +518,11 @@ function Neuro() {
                             <div className="input-group-prepend">
                               <span className="input-group-text">@</span>
                             </div>
-                            <input
-                              placeholder="Special Tests"
-                              type="text"
-                              name="scar"
-                              id="scar"
-                              className="form-control"
-                            />
+                            <Field name="score1">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </div>
                         </div>
                         <div className="column">
@@ -386,13 +530,11 @@ function Neuro() {
                             <div className="input-group-prepend">
                               <span className="input-group-text">@</span>
                             </div>
-                            <textarea
-                              placeholder="Description"
-                              type="text"
-                              name="adhere"
-                              id="adhere"
-                              class="form-control"
-                            ></textarea>
+                            <Field name="score2">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </div>
                         </div>
                       </div>
@@ -420,7 +562,7 @@ function Neuro() {
                           <td class="text-center"></td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <center>Left</center>{" "}
+                            <center>Left</center>
                           </td>
                           <td class="text-center">
                             <center>Right</center>
@@ -430,162 +572,162 @@ function Neuro() {
                           <td class="text-center">Ulnar</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="ulnar_left1"
-                            />{" "}
+                            <Field name="ulnarrl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="ulnar_right1"
-                            />
+                            <Field name="ulnarrR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Radial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Radial_left1"
-                            />{" "}
+                            <Field name="radialll">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Radial_right1"
-                            />
+                            <Field name="radiallR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Median</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Median_left1"
-                            />{" "}
+                            <Field name="mediannl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Median_right1"
-                            />
+                            <Field name="mediannR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Sciatic</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sciatic_left1"
-                            />{" "}
+                            <Field name="sciaticcl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sciatic_right1"
-                            />
+                            <Field name="sciaticcR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Tibial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tibial_left1"
-                            />{" "}
+                            <Field name="tibialll">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Tibial_right1"
-                            />
+                            <Field name="tibiallR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">peronial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="peronial_left1"
-                            />{" "}
+                            <Field name="peronialll">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="peronial_right1"
-                            />
+                            <Field name="peroniallR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Comman peronial</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Femoral_left1"
-                            />{" "}
+                            <Field name="commanperonialll">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Femoral_right1"
-                            />
+                            <Field name="commanperoniallR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Femoral</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sural_left1"
-                            />{" "}
+                            <Field name="femoralll">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Sural_right1"
-                            />
+                            <Field name="femorallR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                         <tr>
                           <td class="text-center">Lateral cutaneous</td>
                           <td class="text-center"></td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Saphenous_left1"
-                            />{" "}
+                            <Field name="lateralcutaneoussl">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                           <td class="text-center">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="Saphenous_right1"
-                            />
+                            <Field name="lateralcutaneoussR">
+                              {({ input, meta }) => (
+                                <input type="text" {...input} />
+                              )}
+                            </Field>
                           </td>
                         </tr>
                       </tbody>
@@ -617,11 +759,11 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="f1"
-                                />{" "}
+                                <Field name="time">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
@@ -630,22 +772,22 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="f2"
-                                />{" "}
+                                <Field name="speed">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
                               <td class="text-center">No. of Error Made :</td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="f3"
-                                />{" "}
+                                <Field name="error">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                           </tbody>
@@ -668,11 +810,11 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="a1"
-                                />{" "}
+                                <Field name="time1">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
@@ -681,22 +823,22 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="a2"
-                                />{" "}
+                                <Field name="speed1">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
                               <td class="text-center">No. of Error Made :</td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="a3"
-                                />{" "}
+                                <Field name="error1">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                           </tbody>
@@ -717,11 +859,11 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="h1"
-                                />{" "}
+                                <Field name="time2">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
@@ -730,22 +872,22 @@ function Neuro() {
                               </td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="h2"
-                                />{" "}
+                                <Field name="speed2">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                             <tr>
                               <td class="text-center">No. of Error Made :</td>
                               <td class="text-center"></td>
                               <td class="text-center">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name="h3"
-                                />{" "}
+                                <Field name="error2">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
                               </td>
                             </tr>
                           </tbody>
@@ -771,13 +913,12 @@ function Neuro() {
                       <div className="column">Gait level surface :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="gait" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -786,13 +927,12 @@ function Neuro() {
                       <div className="column">Change in gait speed :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="change" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -801,13 +941,12 @@ function Neuro() {
                       <div className="column">Gait level surface :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="gait1" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -818,13 +957,12 @@ function Neuro() {
                       </div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="horizontal" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -835,13 +973,12 @@ function Neuro() {
                       </div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="vertical" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -850,13 +987,12 @@ function Neuro() {
                       <div className="column">Gait and pivot turn :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="pivot" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -865,13 +1001,12 @@ function Neuro() {
                       <div className="column">Step over obstacle :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="over" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -880,13 +1015,12 @@ function Neuro() {
                       <div className="column">Step around obstacles :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="around" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -895,13 +1029,12 @@ function Neuro() {
                       <div className="column">Steps :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                          <Field name="steps" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -909,11 +1042,20 @@ function Neuro() {
                     <br />
                     <div className="item">
                       <div className="ui four wide column">
+                        
                         <label>Balance and Movement Analyzer</label>
+                        
                       </div>
+                      <Field name="balance">
+                                  {({ input, meta }) => (
+                                    <input type="text" {...input} />
+                                  )}
+                                </Field>
 
-                      <textarea rows="5"></textarea>
+                      {/* <textarea rows="5"></textarea> */}
+                     
                     </div>
+                  
                   </div>
                 )}
               </div>
@@ -931,13 +1073,12 @@ function Neuro() {
                       <div className="column">Bowels (preceding week) :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="bowels" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -946,13 +1087,12 @@ function Neuro() {
                       <div className="column">Bladder (preceding week) :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="bladder" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -963,13 +1103,12 @@ function Neuro() {
                       </div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="grooming" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -978,13 +1117,12 @@ function Neuro() {
                       <div className="column">Toilet use :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="toilet" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -993,13 +1131,12 @@ function Neuro() {
                       <div className="column">Feeding :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="feeding" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -1008,13 +1145,12 @@ function Neuro() {
                       <div className="column">Bathing :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="bathing" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -1025,13 +1161,12 @@ function Neuro() {
                       </div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="transfer" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -1040,13 +1175,12 @@ function Neuro() {
                       <div className="column">Mobility :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="mobility" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -1055,13 +1189,12 @@ function Neuro() {
                       <div className="column">Dressing :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="dressing" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
@@ -1070,18 +1203,25 @@ function Neuro() {
                       <div className="column">Stairs :</div>
                       <div className="column">
                         <div class=" four wide column">
-                          <select class="ui fluid dropdown">
+                        <Field name="stairs" component="select">
                             <option selected>Please Select</option>
-
-                            <option value="3">3</option>
-                            <option value="2">2</option>
                             <option value="1">1</option>
-                          </select>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </Field>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <button
+                  // disabled={!_.isEmpty(errors) || submitting}
+                  className="ui primary button"
+                >
+                  Save
+                </button>
               </div>
             </form>
           )}

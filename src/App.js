@@ -20,6 +20,7 @@ import { getAllPatients } from "./actions/patientAction";
 import { getAllApointments } from "./actions/appointmentAction";
 import Examination from "./components/Forms/Assessments/Examination";
 import Patient from "./components/Container/Patient";
+import Assessment from "./components/Container/Assessment";
 import DemographicData from "./components/Forms/Assessments/DemographicData";
 import History from "./components/Forms/Assessments/History";
 import Pain from "./components/Forms/Assessments/Pain";
@@ -105,8 +106,9 @@ class App extends Component {
               component={ScheduleContainer}
             />
             <Route exact path="/add-appointment" component={AddApointment} />
+            <Route exact path="/assessment" component={Assessment} />
             <Route exact path="/patients/:id" component={Intervention} />
-            <Route exact path="/patients" component={EhrMngmnt} />
+            <Route exact path="/patients " component={EhrMngmnt} />
             <Route exact path="/add-patient" component={AddPatientDetails} />
             <Route exact path="/feedback" component={Feedback} />
             <Route exact path="/add-new-feedback" component={FeedbackForm} />

@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, FormControlLabel, Radio } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import BasicContainer from "../../Container/BasicContainer";
-import { ButtonGroup, Button, Slider } from "@material-ui/core";
+import { ButtonGroup, Button } from "@material-ui/core";
 
 function Pain() {
   const onSubmit = (formValues) => {
@@ -13,12 +13,12 @@ function Pain() {
     c1: {},
     c2: {},
     c3: {},
-    c4: {}
   });
 
   const initialValues = { date: new Date().toISOString().substr(0, 10) };
 
   return (
+    <BasicContainer>
       <Form onSubmit={onSubmit} initialValues={initialValues}>
         {({ handleSubmit, form }) => (
           <form onSubmit={handleSubmit} className="ui form">
@@ -66,7 +66,13 @@ function Pain() {
                     </div>
                   </div>
                   <br />
-                  
+                  <div className="item">
+                    <label>Inflammatory Pain</label>
+                    <Field name="inflammatoryPain">
+                      {({ input, meta }) => <input type="text" {...input} />}
+                    </Field>
+                  </div>
+                  <br />
                   <div className="item">
                     <label>Trigger Point</label>
                     <Field name="triggerPoint">
@@ -153,6 +159,13 @@ function Pain() {
                     </div>
                   </div>
                   <br />
+                  <div className="item">
+                    <label> Neuropathic Pain </label>
+                    <Field name="neuropathicPain">
+                      {({ input, meta }) => <input type="text" {...input} />}
+                    </Field>
+                  </div>
+                  <br />
 
                   <div className="item">
                     <label> Aggravating Factor </label>
@@ -173,7 +186,7 @@ function Pain() {
                             });
                           }}
                           variant={
-                            painData.c3["1"] === 1 ? "contained" : "outlined"
+                            painData.c2["1"] === 1 ? "contained" : "outlined"
                           }
                         >
                           Morning
@@ -186,7 +199,7 @@ function Pain() {
                             });
                           }}
                           variant={
-                            painData.c3["1"] === 2 ? "contained" : "outlined"
+                            painData.c2["1"] === 2 ? "contained" : "outlined"
                           }
                         >
                           Afternoon
@@ -199,7 +212,7 @@ function Pain() {
                             });
                           }}
                           variant={
-                            painData.c3["1"] === 3 ? "contained" : "outlined"
+                            painData.c2["1"] === 3 ? "contained" : "outlined"
                           }
                         >
                           Evening
@@ -212,7 +225,7 @@ function Pain() {
                             });
                           }}
                           variant={
-                            painData.c3["1"] === 4 ? "contained" : "outlined"
+                            painData.c2["1"] === 4 ? "contained" : "outlined"
                           }
                         >
                           Night
@@ -225,10 +238,10 @@ function Pain() {
                             });
                           }}
                           variant={
-                            painData.c3["1"] === 5 ? "contained" : "outlined"
+                            painData.c2["1"] === 5 ? "contained" : "outlined"
                           }
                         >
-                          No specific
+                          No Specific Pattern
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -242,67 +255,31 @@ function Pain() {
                     <label>Pain Intensity</label>
                     <Field name="painIntensity">
                       {({ input, meta }) => (
-                        <Slider
-                        defaultValue={5}
-                        aria-labelledby="discrete-slider"
-                        valueLabelDisplay="auto"
-                        step={1}
-                        marks
-                        min={1}
-                        max={10}
-                      />
+                        <input type="text" {...input} placeholder="VAS Score" />
                       )}
                     </Field>
                   </div>
                   <br />
                   <div className="item">
                     <label> Nature Of Pain </label>
-                    <div className="item">
-                      <ButtonGroup color="primary">
-                        <Button
-                          onClick={() => {
-                            setPainData({
-                              ...painData,
-                              c4: { ...painData.c4, 1: 1 },
-                            });
-                          }}
-                          variant={
-                            painData.c4["1"] === 1 ? "contained" : "outlined"
-                          }
-                        >
-                          Inflammatory 
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            setPainData({
-                              ...painData,
-                              c4: { ...painData.c4, 1: 2 },
-                            });
-                          }}
-                          variant={
-                            painData.c4["1"] === 2 ? "contained" : "outlined"
-                          }
-                        >
-                          Neuropathic 
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            setPainData({
-                              ...painData,
-                              c4: { ...painData.c4, 1: 3 },
-                            });
-                          }}
-                          variant={
-                            painData.c4["1"] === 3 ? "contained" : "outlined"
-                          }
-                        >
-                          Functional 
-                        </Button>
-                      </ButtonGroup>
-                    </div>
+                    <Field name="natureOfPain">
+                      {({ input, meta }) => (
+                        <input
+                          type="text"
+                          {...input}
+                          placeholder="Nociceptive Pain"
+                        />
+                      )}
+                    </Field>
                   </div>
                   <br />
-                  
+                  <div className="item">
+                    <label> Functional Pain </label>
+                    <Field name="functionalPain">
+                      {({ input, meta }) => <input type="text" {...input} />}
+                    </Field>
+                  </div>
+                  <br />
                   <div className="item">
                     <label>Relieving Factor </label>
                     <Field name="relievingFactor">
@@ -334,6 +311,7 @@ function Pain() {
           </form>
         )}
       </Form>
+    </BasicContainer>
   );
 }
 

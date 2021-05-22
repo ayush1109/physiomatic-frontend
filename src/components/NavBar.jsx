@@ -258,6 +258,9 @@ function NavBar(props) {
               <Link to="/test">
                 <Button>Test</Button>
               </Link>
+              <Link to="/assessment">
+                <Button>Assessment</Button>
+              </Link>
 
               {props.user.isLogedIn && (
                 <Typography>{props.user.user.name}</Typography>

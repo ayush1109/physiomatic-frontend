@@ -25,6 +25,7 @@
     "date-fns": "^2.11.1",
     "final": "^0.2.0",
     "final-form": "^4.20.1",
+    "final-form-material-ui": "^0.3.0",
     "form": "^0.2.4",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",

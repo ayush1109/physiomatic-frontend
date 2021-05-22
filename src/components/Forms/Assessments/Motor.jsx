@@ -7985,4 +7985,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { addMotorData })(Motor);
-

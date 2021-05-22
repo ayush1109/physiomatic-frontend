@@ -11,6 +11,7 @@ import DemographicData from "../Forms/Assessments/DemographicData";
 import Neuro from "../Forms/Assessments/Neuro";
 import Pediatric from "../Forms/Assessments/Pediatric";
 import Motor from "../Forms/Assessments/Motor";
+import Shoulder from "../Forms/Assessments/ShoulderEvaluation";
 
 export default function Patient(props) {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -25,6 +26,7 @@ export default function Patient(props) {
     "Sensory Examination",
     "Neuro Examination",
     "Paediatric Evaluation",
+    "Shoulder Evaluation"
   ];
 
   const renderForm = () => {
@@ -37,6 +39,7 @@ export default function Patient(props) {
     if (activeTab === 6) return <Sensory />;
     if (activeTab === 7) return <Neuro />;
     if (activeTab === 8) return <Pediatric />;
+    if (activeTab === 9) return <Shoulder />;
   };
 
   return (
